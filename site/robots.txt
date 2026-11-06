@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://www.cl-partners.ch/sitemap.xml

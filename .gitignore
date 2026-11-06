@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+
+# Local tooling
+.claude/
+
+# Raw client source materials (kept local, not published)
+/CL_Partners_Website_Brief.pdf
+/Website Copy.docx
+/Design inspiration*.webp
+/Christian LEFEVRE.png
+/Nancy 2_edited.avif
+/Logo.png
+/Toolkit1.png
+/CL_Partners_Company_Presentation.mp4
+/Executive Field Notes/
+__pycache__/
