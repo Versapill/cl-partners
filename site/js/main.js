@@ -290,6 +290,40 @@
       });
   }
 
+  /* ---------- Team check-in (Team Effectiveness toolkit) ---------- */
+  document.querySelectorAll('[data-checkin]').forEach(function (form) {
+    var opts = ['1', '2', '3', '4', '5', 'N/O'];
+    var rows = form.querySelectorAll('.ci-row');
+    rows.forEach(function (row, i) {
+      var text = row.querySelector('.ci-text').textContent;
+      var group = document.createElement('div');
+      group.className = 'ci-scale'; group.setAttribute('role', 'radiogroup'); group.setAttribute('aria-label', text);
+      opts.forEach(function (o) {
+        var id = 'ci' + i + '-' + o.replace('/', '');
+        var lab = document.createElement('label'); lab.className = 'ci-opt' + (o === 'N/O' ? ' na' : ''); lab.htmlFor = id;
+        lab.innerHTML = '<input type="radio" id="' + id + '" name="ci' + i + '" value="' + o + '"><span>' + o + '</span>';
+        group.appendChild(lab);
+      });
+      row.appendChild(group);
+    });
+    var empty = form.querySelector('.ci-empty'), box = form.querySelector('.ci-priorities'), list = form.querySelector('.ci-list');
+    function update() {
+      var rated = [];
+      rows.forEach(function (row, i) {
+        var c = form.querySelector('input[name="ci' + i + '"]:checked');
+        if (c && c.value !== 'N/O') rated.push({ i: i, v: +c.value, cards: row.getAttribute('data-cards'), text: row.querySelector('.ci-text').textContent, p: row.closest('fieldset').querySelector('legend').textContent.trim() });
+      });
+      if (rated.length < 3) { empty.hidden = false; box.hidden = true; return; }
+      rated.sort(function (a, b) { return a.v - b.v || a.i - b.i; });
+      list.innerHTML = rated.slice(0, 3).map(function (r, n) {
+        return '<li><span class="pr-n">Priority ' + (n + 1) + '</span><span class="pr-t"><strong>' + r.text + '</strong><small>' + r.p + ' · rated ' + r.v + '/5</small></span><span class="pr-c">Cards ' + r.cards + '</span></li>';
+      }).join('');
+      empty.hidden = true; box.hidden = false;
+    }
+    form.addEventListener('change', update);
+    form.addEventListener('reset', function () { setTimeout(update, 0); });
+  });
+
   /* ---------- Year ---------- */
   document.querySelectorAll('[data-year]').forEach(function (el) { el.textContent = new Date().getFullYear(); });
 })();

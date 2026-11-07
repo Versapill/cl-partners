@@ -71,6 +71,16 @@ def dots(cls=""):
     circles = "".join(f'<circle cx="{x}" cy="{y}" r="{r}" style="animation-delay:-{(i*0.37)%7:.2f}s"/>' for i,(x,y,r) in enumerate(DOTS))
     return f'<svg class="{cls}" viewBox="490 0 610 640" aria-hidden="true" focusable="false"><g fill="#FF9900">{circles}</g></svg>'
 
+def mark(cls=""):
+    """White CL symbol, used solid and sparingly on dark surfaces."""
+    return f'<img class="cl-mark {cls}" src="assets/img/cl-mark-white.png" alt="" aria-hidden="true" width="400" height="308" loading="lazy">'
+
+def trail(cls=""):
+    """Four orange dots rising in one direction, echoing the logo's particles."""
+    pts = [(8, 92, 5), (34, 66, 7), (62, 40, 9.5), (94, 12, 12)]
+    c = "".join(f'<circle cx="{x}" cy="{y}" r="{r}"/>' for x, y, r in pts)
+    return f'<svg class="dot-trail {cls}" viewBox="0 0 108 104" aria-hidden="true" focusable="false"><g fill="#FF9900">{c}</g></svg>'
+
 def curve(variant=""):
     cls = f"curve to-{variant}" if variant else "curve"
     return (f'<svg class="{cls}" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
@@ -207,7 +217,8 @@ FOOTER = f'''<footer class="site-footer">
         <li><a href="join-our-team.html">Join our team</a><span class="new">Hiring</span></li></ul></div>
       <div class="footer-col"><h2>Resources</h2><ul>
         <li><a href="resources.html#field-notes">Executive Field Notes</a></li>
-        <li><a href="resources.html#toolkit">Leadership Toolkit</a></li>
+        <li><a href="resources.html#toolkit">Team Effectiveness Toolkit</a></li>
+        <li><a href="resources.html#team-building">Team Building Toolkit</a></li>
         <li><a href="resources.html#perspectives">Perspectives</a></li></ul></div>
       <div class="footer-col"><h2>Contact</h2>
         <address>CL Partners Sàrl<br>Rue Rothschild 50<br>1202 Geneva, Switzerland<br>
@@ -227,7 +238,7 @@ LEAD_MODAL = f'''<div class="modal" id="lead-modal" aria-hidden="true" role="dia
       <h2 id="lead-title" data-res-title>Executive Field Note</h2>
       <p data-res-sub></p>
       <ul><li>Seven questions to ask before you act</li><li>Three traps to avoid</li><li>A short exercise to use with your team</li><li>A real-world example from life sciences</li></ul>
-      {dots("modal-dots")}
+      <img class="modal-mark" src="assets/img/cl-mark-white.png" alt="" aria-hidden="true" width="120" height="92">
     </div>
     <div class="modal-main">
       <form class="form" novalidate>
@@ -303,8 +314,8 @@ PAGES = [
      "Business stories from CL Partners mandates and our founder's executive experience in international life sciences: post-acquisition integration, separation and change leadership.", "cases", "1630959305790-4c956ce6c0b6"),
     ("about", "About CL Partners and Christian Lefèvre | Geneva",
      "CL Partners is a Geneva-based advisory and implementation firm founded by Christian Lefèvre, former executive at Pfizer/Wyeth, UCB and Novartis.", "about", "1584200463394-bba4b2117e4d"),
-    ("resources", "Resources: Executive Field Notes & Leadership Toolkit | CL Partners",
-     "Practical resources for leaders: Executive Field Notes, the Leadership & Team Effectiveness Toolkit and Perspectives on organization, leadership and change.", "resources", "1758873269811-4e62e346b4b7"),
+    ("resources", "Resources: Executive Field Notes & Team Toolkits | CL Partners",
+     "Practical resources for leaders: Executive Field Notes, the Team Effectiveness Conversations and Team Building Activities toolkits, and Perspectives on organization, leadership and change.", "resources", "1758873269811-4e62e346b4b7"),
     ("contact", "Contact CL Partners | Start a confidential conversation",
      "Tell us what needs to change. Christian Lefèvre responds personally. CL Partners Sàrl, Rue Rothschild 50, 1202 Geneva.", "contact", "1663789529247-974d4d08ce3a"),
     ("join-our-team", "Join our team | CL Partners",
@@ -317,6 +328,8 @@ def render_tokens(s):
     s = re.sub(r"\{\{img:([\w-]+):(\d+)\}\}", lambda m: img(m.group(1), m.group(2)), s)
     s = re.sub(r"\{\{curve(?::(\w+))?\}\}", lambda m: curve(m.group(1) or ""), s)
     s = re.sub(r"\{\{dots(?::([\w -]+))?\}\}", lambda m: dots(m.group(1) or ""), s)
+    s = re.sub(r"\{\{mark(?::([\w -]+))?\}\}", lambda m: mark(m.group(1) or ""), s)
+    s = re.sub(r"\{\{trail(?::([\w -]+))?\}\}", lambda m: trail(m.group(1) or ""), s)
     s = re.sub(r"\{\{form:(\w+)\}\}", lambda m: FORMS[m.group(1)], s)
     return s
 
