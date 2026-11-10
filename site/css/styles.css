@@ -502,8 +502,7 @@ blockquote.quote::before { content: "\201C"; position: absolute; top: -.25em; le
 /* Team cards */
 .team { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--s4); }
 .member { display: grid; grid-template-columns: 180px 1fr; gap: var(--s3); align-items: start; padding: var(--s3); border-radius: var(--r-lg); background: #fff; border: 1px solid var(--line); }
-.member img { width: 180px; height: 210px; object-fit: cover; border-radius: var(--r); filter: grayscale(1); transition: filter var(--t-slow) var(--ease-out); }
-.member:hover img { filter: grayscale(0); }
+.member img { width: 180px; height: 210px; object-fit: cover; border-radius: var(--r); }
 .member .role { font-size: var(--fs-xs); font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--cyan-ink); margin-bottom: .5rem; }
 .member h3 { font-size: var(--fs-xl); margin-bottom: .5rem; }
 .member p { font-size: var(--fs-sm); color: var(--muted); }
