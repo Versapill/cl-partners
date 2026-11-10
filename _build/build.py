@@ -81,6 +81,30 @@ def trail(cls=""):
     c = "".join(f'<circle cx="{x}" cy="{y}" r="{r}"/>' for x, y, r in pts)
     return f'<svg class="dot-trail {cls}" viewBox="0 0 108 104" aria-hidden="true" focusable="false"><g fill="#FF9900">{c}</g></svg>'
 
+RES = [
+    ("efn", "executive-field-notes.html", "Executive Field Notes", "Free download", "One-page guides with seven questions, three traps and a short exercise for key leadership moments.", "3 notes · more coming", "file", "1714974528737-3e6c7e4d11af"),
+    ("tek", "team-effectiveness-toolkit.html", "Team Effectiveness Conversations", "Toolkit 01", "A team check-in and 45 exercises across Leading Self, Leading Teams and Leading Organization.", "Interactive check-in", "users", "1758873269035-aae0e1fd3422"),
+    ("tbk", "team-building-toolkit.html", "Team Building Activities", "Toolkit 02", "45 shared experiences in 5 activity families to build trust, connection and positive energy.", "5 families · 45 activities", "sparkle", "1758518731706-be5d5230e5a5"),
+    ("persp", "perspectives.html", "Perspectives", "Articles", "Practical perspectives on the organization and leadership choices behind growth, integration and change.", "First articles coming soon", "pen", "1714974528718-b3b52f91c334"),
+]
+
+def res_card(r, i=0):
+    key, href, title, kicker, desc, meta, ic, im = r
+    return (f'<a class="res-card reveal" style="--d:{i*80}ms" href="{href}">'
+            f'<div class="res-media"><img src="{img(im, 900)}" alt="" loading="lazy" width="900" height="560"><span class="res-kicker">{kicker}</span></div>'
+            f'<div class="res-body"><div class="icon-chip">{icon(ic)}</div><h3>{title}</h3><p>{desc}</p>'
+            f'<div class="res-foot"><span class="res-meta">{meta}</span><span class="link-arrow">Open {icon("arrow-right")}</span></div></div></a>')
+
+def reshub():
+    return '<div class="res-grid">' + "".join(res_card(r, i) for i, r in enumerate(RES)) + '</div>'
+
+def morres(current):
+    others = [r for r in RES if r[0] != current]
+    return ('<section class="section section-tight" aria-labelledby="more-res-title"><div class="container">'
+            '<div class="section-head reveal" style="margin-bottom:var(--s4)"><p class="eyebrow">More resources</p>'
+            '<h2 id="more-res-title" style="font-size:var(--fs-xl)">Keep exploring</h2></div>'
+            '<div class="res-grid res-grid-3">' + "".join(res_card(r, i) for i, r in enumerate(others)) + '</div></div></section>')
+
 def curve(variant=""):
     cls = f"curve to-{variant}" if variant else "curve"
     return (f'<svg class="{cls}" viewBox="0 0 1440 160" preserveAspectRatio="none" aria-hidden="true" focusable="false">'
@@ -168,10 +192,20 @@ def header(active):
         <a href="organization-effectiveness.html"{cur("oe")}><strong>Organization Effectiveness</strong><span>Governance, operating model, M&amp;A integration and PE value creation</span></a>
         <a href="leadership-team-effectiveness.html"{cur("lte")}><strong>Leadership &amp; Team Effectiveness</strong><span>Executive team alignment, change leadership and transitions</span></a>
       </div></li>''']
+    res_keys = ("resources", "efn", "tek", "tbk", "persp")
     for key, label, href in NAV[1:]:
-        items.append(f'<li><a class="nav-link" href="{href}"{cur(key)}>{label}</a></li>')
+        if key == "resources":
+            ra = ' is-active' if active in res_keys else ''
+            links = f'<a href="resources.html"{cur("resources")}><strong>All resources</strong><span>Overview of our free tools for leaders</span></a>' + "".join(
+                f'<a href="{r[1]}"{cur(r[0])}><strong>{r[2]}</strong><span>{r[5]}</span></a>' for r in RES)
+            items.append(f'''<li><button class="nav-link{ra}" type="button" data-dropdown aria-expanded="false" aria-controls="dd-resources">Resources {icon("chevron-down")}</button>
+      <div class="dropdown" id="dd-resources">{links}</div></li>''')
+        else:
+            items.append(f'<li><a class="nav-link" href="{href}"{cur(key)}>{label}</a></li>')
     mobile = [("organization-effectiveness.html","Organization Effectiveness","oe",True),("leadership-team-effectiveness.html","Leadership &amp; Team Effectiveness","lte",True),
               ("how-we-work.html","How We Work","how-we-work",False),("cases.html","Cases","cases",False),("resources.html","Resources","resources",False),
+              ("executive-field-notes.html","Executive Field Notes","efn",True),("team-effectiveness-toolkit.html","Team Effectiveness Conversations","tek",True),
+              ("team-building-toolkit.html","Team Building Activities","tbk",True),("perspectives.html","Perspectives","persp",True),
               ("about.html","About","about",False),("join-our-team.html","Join our team","join",False),("contact.html","Contact","contact",False)]
     sub_cls = ' class="sub"'
     mob = "".join(f'<a href="{h}"{sub_cls if s else ""}{cur(k)}>{l}{icon("arrow-right")}</a>' for h,l,k,s in mobile)
@@ -216,10 +250,10 @@ FOOTER = f'''<footer class="site-footer">
         <li><a href="about.html">About</a></li>
         <li><a href="join-our-team.html">Join our team</a><span class="new">Hiring</span></li></ul></div>
       <div class="footer-col"><h2>Resources</h2><ul>
-        <li><a href="resources.html#field-notes">Executive Field Notes</a></li>
-        <li><a href="resources.html#toolkit">Team Effectiveness Toolkit</a></li>
-        <li><a href="resources.html#team-building">Team Building Toolkit</a></li>
-        <li><a href="resources.html#perspectives">Perspectives</a></li></ul></div>
+        <li><a href="executive-field-notes.html">Executive Field Notes</a></li>
+        <li><a href="team-effectiveness-toolkit.html">Team Effectiveness Toolkit</a></li>
+        <li><a href="team-building-toolkit.html">Team Building Toolkit</a></li>
+        <li><a href="perspectives.html">Perspectives</a></li></ul></div>
       <div class="footer-col"><h2>Contact</h2>
         <address>CL Partners Sàrl<br>Rue Rothschild 50<br>1202 Geneva, Switzerland<br>
         <a href="mailto:welcome@cl-partners.ch">welcome@cl-partners.ch</a><br><a href="tel:+41795843039">+41 79 584 30 39</a></address></div>
@@ -316,6 +350,14 @@ PAGES = [
      "CL Partners is a Geneva-based advisory and implementation firm founded by Christian Lefèvre, former executive at Pfizer/Wyeth, UCB and Novartis.", "about", "1584200463394-bba4b2117e4d"),
     ("resources", "Resources: Executive Field Notes & Team Toolkits | CL Partners",
      "Practical resources for leaders: Executive Field Notes, the Team Effectiveness Conversations and Team Building Activities toolkits, and Perspectives on organization, leadership and change.", "resources", "1758873269811-4e62e346b4b7"),
+    ("executive-field-notes", "Executive Field Notes: free one-page guides for leaders | CL Partners",
+     "Free one-page Executive Field Notes: seven questions, three traps and a short exercise for key leadership moments. New notes published regularly.", "efn", "1714974528737-3e6c7e4d11af"),
+    ("team-effectiveness-toolkit", "Team Effectiveness Conversations toolkit | CL Partners",
+     "An open toolkit to grow together: interactive team check-in, 3 leadership perspectives and 45 exercises for leadership teams.", "tek", "1758873269035-aae0e1fd3422"),
+    ("team-building-toolkit", "Team Building Activities toolkit | CL Partners",
+     "Shared experiences, stronger teams: 5 activity families, 15 themes and 45 team building activities with a facilitation guide.", "tbk", "1758518731706-be5d5230e5a5"),
+    ("perspectives", "Perspectives on organization, leadership and change | CL Partners",
+     "Practical perspectives for leaders on the organization and leadership choices behind growth, integration, restructuring and change.", "persp", "1714974528718-b3b52f91c334"),
     ("contact", "Contact CL Partners | Start a confidential conversation",
      "Tell us what needs to change. Christian Lefèvre responds personally. CL Partners Sàrl, Rue Rothschild 50, 1202 Geneva.", "contact", "1663789529247-974d4d08ce3a"),
     ("join-our-team", "Join our team | CL Partners",
@@ -330,6 +372,8 @@ def render_tokens(s):
     s = re.sub(r"\{\{dots(?::([\w -]+))?\}\}", lambda m: dots(m.group(1) or ""), s)
     s = re.sub(r"\{\{mark(?::([\w -]+))?\}\}", lambda m: mark(m.group(1) or ""), s)
     s = re.sub(r"\{\{trail(?::([\w -]+))?\}\}", lambda m: trail(m.group(1) or ""), s)
+    s = s.replace("{{reshub}}", reshub())
+    s = re.sub(r"\{\{morres:(\w+)\}\}", lambda m: morres(m.group(1)), s)
     s = re.sub(r"\{\{form:(\w+)\}\}", lambda m: FORMS[m.group(1)], s)
     return s
 
