@@ -154,7 +154,7 @@ FORMS = {
   {field("message","Briefly describe your business situation","textarea",placeholder="What needs to change, what is getting in the way, and who is involved?")}
   {consent("c-consent", 'I agree that CL Partners may use these details to respond to my enquiry, as described in the <a href="privacy.html">privacy notice</a>.')}
   {HONEYPOT.format(id="c-hp")}
-  <div class="btn-row">{submit_btn("Send your message")}<span class="form-note">Your message is treated in confidence.</span></div>
+  <div class="btn-row">{submit_btn("Send your message")}</div>
 </form>
 <div class="form-success" aria-live="polite">
   <div class="success-mark">{icon("check")}</div>
