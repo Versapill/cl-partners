@@ -82,16 +82,25 @@ def trail(cls=""):
     return f'<svg class="dot-trail {cls}" viewBox="0 0 108 104" aria-hidden="true" focusable="false"><g fill="#FF9900">{c}</g></svg>'
 
 RES = [
-    ("efn", "executive-field-notes.html", "Executive Field Notes", "Free download", "One-page guides with seven questions, three traps and a short exercise for key leadership moments.", "3 notes · more coming", "file", "1714974528737-3e6c7e4d11af"),
-    ("tek", "team-effectiveness-toolkit.html", "Team Effectiveness Conversations", "Toolkit 01", "A team check-in and 45 exercises across Leading Self, Leading Teams and Leading Organization.", "Interactive check-in", "users", "1758873269035-aae0e1fd3422"),
-    ("tbk", "team-building-toolkit.html", "Team Building Activities", "Toolkit 02", "45 shared experiences in 5 activity families to build trust, connection and positive energy.", "5 families · 45 activities", "sparkle", "1758518731706-be5d5230e5a5"),
-    ("persp", "perspectives.html", "Perspectives", "Articles", "Practical perspectives on the organization and leadership choices behind growth, integration and change.", "First articles coming soon", "pen", "1714974528718-b3b52f91c334"),
+    ("efn", "executive-field-notes.html", "Executive Field Notes", "Free download", "Practical one-page tools for key leadership moments: seven questions, three traps and a short exercise.", "3 notes · more coming", "file", ""),
+    ("tek", "team-effectiveness-toolkit.html", "Team Effectiveness Conversations", "Toolkit 01", "A team check-in and 45 exercises across Leading Self, Leading Teams and Leading Organization.", "Interactive check-in", "users", "assets/img/toolkit.jpg"),
+    ("tbk", "team-building-toolkit.html", "Team Building Activities", "Toolkit 02", "45 shared experiences in 5 activity families to build trust, connection and positive energy.", "5 families · 45 activities", "sparkle", "assets/img/toolkit-teambuilding.jpg"),
+    ("persp", "perspectives.html", "Perspectives", "Point of view", "Points of view that help leaders see a business situation differently: what we observe, what is often misunderstood and which decisions matter.", "First articles in preparation", "pen", ""),
 ]
+
+def res_media(key, im):
+    if key == "efn":
+        sheets = "".join(f'<img class="efn-sheet s{n}" src="assets/img/efn0{n}-cover.jpg" alt="" loading="lazy" width="520" height="735">' for n in (3, 2, 1))
+        return f'<div class="res-media res-efn">{sheets}'
+    if key == "persp":
+        return (f'<div class="res-media res-persp"><span class="pq" aria-hidden="true">“</span>'
+                f'<span class="pq-lines" aria-hidden="true"><i></i><i></i><i></i></span>{mark("pq-mark")}')
+    return f'<div class="res-media res-photo"><img src="{im}" alt="" loading="lazy" width="1254" height="1254">'
 
 def res_card(r, i=0):
     key, href, title, kicker, desc, meta, ic, im = r
     return (f'<a class="res-card reveal" style="--d:{i*80}ms" href="{href}">'
-            f'<div class="res-media"><img src="{img(im, 900)}" alt="" loading="lazy" width="900" height="560"><span class="res-kicker">{kicker}</span></div>'
+            f'{res_media(key, im)}<span class="res-kicker">{kicker}</span></div>'
             f'<div class="res-body"><div class="icon-chip">{icon(ic)}</div><h3>{title}</h3><p>{desc}</p>'
             f'<div class="res-foot"><span class="res-meta">{meta}</span><span class="link-arrow">Open {icon("arrow-right")}</span></div></div></a>')
 
@@ -145,12 +154,12 @@ FORMS = {
   {field("message","Briefly describe your business situation","textarea",placeholder="What needs to change, what is getting in the way, and who is involved?")}
   {consent("c-consent", 'I agree that CL Partners may use these details to respond to my enquiry, as described in the <a href="privacy.html">privacy notice</a>.')}
   {HONEYPOT.format(id="c-hp")}
-  <div class="btn-row">{submit_btn("Send your message")}<span class="form-note">Christian responds personally, in confidence.</span></div>
+  <div class="btn-row">{submit_btn("Send your message")}<span class="form-note">Your message is treated in confidence.</span></div>
 </form>
 <div class="form-success" aria-live="polite">
   <div class="success-mark">{icon("check")}</div>
   <h3>Thank you, your message is on its way.</h3>
-  <p class="muted measure mx-auto">Christian Lefèvre will respond personally to explore whether a conversation would be useful.</p>
+  <p class="muted measure mx-auto">We will come back to you to explore whether a conversation would be useful.</p>
 </div></div>''',
 "careers": f'''<div class="form-wrap">
 <form class="form" data-form="careers" novalidate>
@@ -248,7 +257,7 @@ FOOTER = f'''<footer class="site-footer">
         <li><a href="how-we-work.html">How We Work</a></li>
         <li><a href="cases.html">Cases</a></li>
         <li><a href="about.html">About</a></li>
-        <li><a href="join-our-team.html">Join our team</a><span class="new">Hiring</span></li></ul></div>
+        <li><a href="join-our-team.html">Join our team</a></li></ul></div>
       <div class="footer-col"><h2>Resources</h2><ul>
         <li><a href="executive-field-notes.html">Executive Field Notes</a></li>
         <li><a href="team-effectiveness-toolkit.html">Team Effectiveness Toolkit</a></li>
@@ -281,7 +290,7 @@ LEAD_MODAL = f'''<div class="modal" id="lead-modal" aria-hidden="true" role="dia
         {field("name","Full name",autocomplete="name",fid="l-name",extra=" data-autofocus")}
         {field("company","Company",autocomplete="organization",fid="l-company")}
         {field("email","Work email","email",autocomplete="email",fid="l-email")}
-        <label class="check" for="l-updates"><input type="checkbox" id="l-updates" name="updates" value="yes"><span>Send me new Executive Field Notes when they are published (about once a month).</span></label>
+        <label class="check" for="l-updates"><input type="checkbox" id="l-updates" name="updates" value="yes"><span>Notify me when a new Executive Field Note is published.</span></label>
         {consent("l-consent", 'I agree to the <a href="privacy.html">privacy notice</a>.')}
         {HONEYPOT.format(id="l-hp")}
         {submit_btn("Download the Field Note")}
@@ -359,9 +368,9 @@ PAGES = [
     ("perspectives", "Perspectives on organization, leadership and change | CL Partners",
      "Practical perspectives for leaders on the organization and leadership choices behind growth, integration, restructuring and change.", "persp", "1714974528718-b3b52f91c334"),
     ("contact", "Contact CL Partners | Start a confidential conversation",
-     "Tell us what needs to change. Christian Lefèvre responds personally. CL Partners Sàrl, Rue Rothschild 50, 1202 Geneva.", "contact", "1663789529247-974d4d08ce3a"),
+     "Tell us what needs to change. CL Partners Sàrl, Rue Rothschild 50, 1202 Geneva.", "contact", "1663789529247-974d4d08ce3a"),
     ("join-our-team", "Join our team | CL Partners",
-     "CL Partners is always seeking to collaborate with the best talents who share our commitment to excellence. Senior partners and consultants, Geneva.", "join", "1758873269811-4e62e346b4b7"),
+     "Open to conversations with senior partners, consultants, coaches and interim leaders who want to build something with CL Partners in Geneva.", "join", "1758873269811-4e62e346b4b7"),
     ("privacy", "Privacy notice | CL Partners", "How CL Partners handles personal data submitted through this website.", "privacy", "1633022326182-1b36700bc49a"),
 ]
 
