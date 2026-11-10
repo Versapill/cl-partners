@@ -1012,7 +1012,7 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
 
 .profiles { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s4); align-items: start; }
 .profile { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: var(--r-xl); overflow: hidden; box-shadow: var(--shadow-sm); }
-.profile-media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--mist); }
+.profile-media { aspect-ratio: 1 / 1; overflow: hidden; background: var(--mist); }
 .profile-media img { width: 100%; height: 100%; object-fit: cover; }
 .profile-body { padding: clamp(1.5rem, 1rem + 1.5vw, 2.25rem); display: flex; flex-direction: column; flex: 1; }
 @media (min-width: 961px) { .profile .role { min-height: 2.9em; } }
