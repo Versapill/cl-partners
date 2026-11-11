@@ -1174,3 +1174,21 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
   .geneva-shot img { aspect-ratio: 1 / 1; object-position: 30% 50%; }
   .geneva-shot .portrait-tag { top: auto; bottom: 16px; right: 12px; padding: .7rem 1rem; }
 }
+
+/* How We Work: sticky heading with a list of five commitments */
+.why-split { align-items: start; }
+.why-head .lead { margin-bottom: var(--s3); }
+.pillar-list { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--line); }
+.pillar-list li { position: relative; display: grid; grid-template-columns: 88px minmax(0, 1fr); gap: var(--s3); padding: var(--s4) 0 var(--s4) var(--s2); border-bottom: 1px solid var(--line); transition: background var(--t), padding var(--t); }
+.pillar-list li::before { content: ""; position: absolute; left: 0; top: -1px; bottom: -1px; width: 3px; background: var(--orange); transform: scaleY(0); transform-origin: top; transition: transform var(--t); }
+.pillar-list li:hover { background: rgba(255,255,255,.6); }
+.pillar-list li:hover::before { transform: scaleY(1); }
+.pl-num { font-size: 3rem; font-weight: 300; line-height: 1; color: var(--navy); letter-spacing: -.04em; display: flex; align-items: flex-start; gap: .25rem; }
+.pl-num::after { content: ""; width: 10px; height: 10px; border-radius: 50%; background: var(--orange); margin-top: .3rem; }
+.pillar-list h3 { font-size: var(--fs-lg); margin-bottom: .4rem; }
+.pillar-list p { color: var(--muted); margin: 0; max-width: 52ch; }
+@media (max-width: 680px) {
+  .pillar-list li { grid-template-columns: 56px minmax(0, 1fr); gap: var(--s2); padding: var(--s3) 0; }
+  .pl-num { font-size: 2.1rem; }
+  .pl-num::after { width: 8px; height: 8px; }
+}
