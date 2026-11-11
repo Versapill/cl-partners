@@ -236,7 +236,7 @@ def header(active):
   <button class="menu-close" type="button" aria-label="Close menu">{icon("x")}</button></div>
   <nav aria-label="Mobile"><p class="mm-label">Expertise</p>{mob}</nav>
   <a class="btn btn-orange btn-block" href="contact.html">Start a conversation {icon("arrow-right")}</a>
-  <div class="mobile-menu-contact">Rue Rothschild 50, 1202 Geneva<br><a href="mailto:welcome@cl-partners.ch">welcome@cl-partners.ch</a> · <a href="tel:+41795843039">+41 79 584 30 39</a></div>
+  <div class="mobile-menu-contact">Rue Rothschild 50, 1202 Geneva<br><a href="mailto:welcome@cl-partners.ch">welcome@cl-partners.ch</a></div>
 </div>'''
 
 FOOTER = f'''<footer class="site-footer">
@@ -265,7 +265,7 @@ FOOTER = f'''<footer class="site-footer">
         <li><a href="perspectives.html">Perspectives</a></li></ul></div>
       <div class="footer-col"><h2>Contact</h2>
         <address>CL Partners Sàrl<br>Rue Rothschild 50<br>1202 Geneva, Switzerland<br>
-        <a href="mailto:welcome@cl-partners.ch">welcome@cl-partners.ch</a><br><a href="tel:+41795843039">+41 79 584 30 39</a></address></div>
+        <a href="mailto:welcome@cl-partners.ch">welcome@cl-partners.ch</a></address></div>
     </div>
     <div class="footer-bottom"><span>© <span data-year>2026</span> CL Partners Sàrl. All rights reserved.</span>
       <span><a href="privacy.html">Privacy notice</a> · <a href="contact.html">Contact</a></span></div>
@@ -335,7 +335,7 @@ def head(title, desc, slug, og_image):
 
 ORG_LD = {
     "@context": "https://schema.org", "@type": "ProfessionalService", "name": "CL Partners Sàrl",
-    "url": SITE_URL, "logo": f"{SITE_URL}/assets/img/logo.png", "email": "welcome@cl-partners.ch", "telephone": "+41 79 584 30 39",
+    "url": SITE_URL, "logo": f"{SITE_URL}/assets/img/logo.png", "email": "welcome@cl-partners.ch",
     "address": {"@type": "PostalAddress", "streetAddress": "Rue Rothschild 50", "postalCode": "1202", "addressLocality": "Geneva", "addressCountry": "CH"},
     "founder": {"@type": "Person", "name": "Christian Lefèvre", "jobTitle": "Founder & Managing Partner", "sameAs": "https://www.linkedin.com/in/christianlefevre/"},
     "areaServed": ["Switzerland", "EMEA"],
