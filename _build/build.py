@@ -85,7 +85,7 @@ RES = [
     ("efn", "executive-field-notes.html", "Executive Field Notes", "Free download", "Practical one-page tools for key leadership moments: seven questions, three traps and a short exercise.", "3 notes · more coming", "file", ""),
     ("tek", "team-effectiveness-toolkit.html", "Team Effectiveness Conversations", "Toolkit 01", "A team check-in and 45 exercises across Leading Self, Leading Teams and Leading Organization.", "Interactive check-in", "users", "assets/img/toolkit.jpg"),
     ("tbk", "team-building-toolkit.html", "Team Building Activities", "Toolkit 02", "45 shared experiences in 5 activity families to build trust, connection and positive energy.", "5 families · 45 activities", "sparkle", "assets/img/toolkit-teambuilding.jpg"),
-    ("persp", "perspectives.html", "Perspectives", "Point of view", "Points of view that help leaders see a business situation differently: what we observe, what is often misunderstood and which decisions matter.", "First articles in preparation", "pen", ""),
+    ("persp", "perspectives.html", "Perspectives", "Point of view", "Points of view that help leaders see a business situation differently: what we observe, what is often misunderstood and which decisions matter.", "Perspective 01 out now", "pen", ""),
 ]
 
 def res_media(key, im):
@@ -367,6 +367,8 @@ PAGES = [
      "Shared experiences, stronger teams: 5 activity families, 15 themes and 45 team building activities with a facilitation guide.", "tbk", "1758518731706-be5d5230e5a5"),
     ("perspectives", "Perspectives on organization, leadership and change | CL Partners",
      "Practical perspectives for leaders on the organization and leadership choices behind growth, integration, restructuring and change.", "persp", "1714974528718-b3b52f91c334"),
+    ("perspective-next-years-priorities", "Why setting next year’s priorities is not enough | CL Partners Perspectives",
+     "Perspective 01 by Christian Lefèvre: the gap between setting ambitions for the coming year and changing the way the organization needs to operate to deliver them.", "persp", "1714974528718-b3b52f91c334"),
     ("contact", "Contact CL Partners | Start a confidential conversation",
      "Tell us what needs to change. CL Partners Sàrl, Rue Rothschild 50, 1202 Geneva.", "contact", "1663789529247-974d4d08ce3a"),
     ("join-our-team", "Join our team | CL Partners",

@@ -1192,3 +1192,33 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
   .pl-num { font-size: 2.1rem; }
   .pl-num::after { width: 8px; height: 8px; }
 }
+
+/* Perspectives list: published item */
+.topic-list li.is-live h3 a { color: inherit; text-decoration: none; background-image: linear-gradient(var(--orange), var(--orange)); background-size: 0 2px; background-repeat: no-repeat; background-position: 0 100%; transition: background-size var(--t); }
+.topic-list li.is-live h3 a:hover { background-size: 100% 2px; }
+.topic-list .t-read { margin-top: .75rem; }
+.topic-list .soon.live { background: var(--orange); color: var(--navy-950); }
+
+/* Perspective article page */
+.article-hero h1 { font-size: var(--fs-2xl); max-width: 860px; }
+.article-hero .eyebrow a { color: inherit; text-decoration: none; }
+.article-hero .eyebrow a:hover { text-decoration: underline; }
+.article-byline { display: flex; align-items: center; gap: .85rem; }
+.article-byline img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; object-position: 50% 22%; border: 2px solid rgba(255,255,255,.7); }
+.article-byline strong { display: block; color: #fff; line-height: 1.25; }
+.article-byline span { font-size: var(--fs-sm); color: #C9D6E4; }
+.article-body { max-width: 760px; }
+.article-body p { font-size: 1.0625rem; line-height: 1.75; color: var(--body); margin: 0 0 1.15em; }
+.article-body .article-intro { font-size: var(--fs-lg); line-height: 1.6; color: var(--ink, #0B1B2E); }
+.article-body h2 { font-size: var(--fs-xl); margin: var(--s5) 0 var(--s2); }
+.article-question { margin: var(--s5) 0; padding: var(--s4); border-radius: var(--r-xl); background: var(--navy-950); color: #fff; font-size: var(--fs-lg); line-height: 1.5; font-weight: 600; border-left: 4px solid var(--orange); }
+.article-author { display: flex; align-items: center; gap: 1rem; padding: var(--s3) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); margin-bottom: var(--s4); }
+.article-author img { width: 64px; height: 64px; border-radius: 50%; object-fit: cover; object-position: 50% 22%; flex: none; }
+.article-author strong { display: block; }
+.article-author span { display: block; color: var(--muted); font-size: var(--fs-sm); margin-bottom: .35rem; }
+@media (max-width: 680px) {
+  .article-hero h1 { font-size: 1.75rem; }
+  .article-body p { font-size: 1rem; }
+  .article-question { padding: var(--s3); font-size: var(--fs-base); }
+  .article-actions .btn { width: 100%; }
+}
