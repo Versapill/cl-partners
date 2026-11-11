@@ -1166,10 +1166,11 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
 }
 
 /* About story: Geneva photo beside the founding story */
-.geneva-shot img { object-position: 60% 50%; }
+.geneva-shot img { object-position: 24% 50%; }
+.geneva-shot .portrait-tag { bottom: auto; top: 28px; left: auto; right: -18px; }
 .story-geneva { align-items: center; }
 @media (max-width: 960px) {
   .geneva-shot { margin-bottom: var(--s3); }
-  .geneva-shot img { aspect-ratio: 1 / 1; object-position: 62% 40%; }
-  .geneva-shot .portrait-tag { bottom: auto; top: 18px; }
+  .geneva-shot img { aspect-ratio: 1 / 1; object-position: 30% 50%; }
+  .geneva-shot .portrait-tag { top: auto; bottom: 16px; right: 12px; padding: .7rem 1rem; }
 }
