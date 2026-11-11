@@ -684,7 +684,7 @@ body.no-scroll { overflow: hidden; }
   .menu-toggle { display: inline-flex; }
 }
 @media (max-width: 960px) {
-  .split, .split-even, .founder, .feature, .case-story { grid-template-columns: 1fr; }
+  .split, .split-even, .founder, .feature, .case-story, .split-contact { grid-template-columns: minmax(0, 1fr); }
   .feature.reverse .feature-media { order: 0; }
   .sticky { position: static; }
   .grid-3, .notes, .questions, .modes, .values, .dimensions { grid-template-columns: 1fr 1fr; }
@@ -703,7 +703,8 @@ body.no-scroll { overflow: hidden; }
 }
 @media (max-width: 680px) {
   :root { --fs-base: 1rem; }
-  .grid-2, .grid-3, .grid-4, .notes, .questions, .modes, .values, .dimensions, .calls, .audience, .pillars, .process, .form-row { grid-template-columns: 1fr; }
+  .grid-2, .grid-3, .grid-4, .notes, .questions, .modes, .values, .dimensions, .calls, .audience, .pillars, .process, .form-row { grid-template-columns: minmax(0, 1fr); }
+  .btn { white-space: normal; text-align: center; justify-content: center; line-height: 1.3; }
   .footer-grid { grid-template-columns: 1fr 1fr; }
   .member { grid-template-columns: 1fr; }
   .member img { width: 100%; height: 300px; }
@@ -1097,9 +1098,31 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
 }
 @media (max-width: 680px) {
   .offer { grid-template-columns: 48px 1fr; }
-  .hub { aspect-ratio: auto; max-width: none; }
+  .hub { aspect-ratio: auto; max-width: none; margin-top: calc(var(--s4) + 22px); }
   .hub-lines { display: none; }
-  .hub-core { position: relative; left: auto; top: auto; translate: none; width: 120px; margin: 0 auto var(--s3); }
+  .hub-core { position: relative; left: auto; top: auto; translate: none; width: 120px; margin: 0 auto calc(var(--s3) + 22px); }
   .hub-nodes { display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; }
   .hub-nodes li { position: static; translate: none; max-width: none; width: auto; }
+}
+
+/* Contact page two-column layout (desktop only) */
+@media (min-width: 961px) { .split-contact { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; } }
+
+/* Mobile: centred eyebrows lose their leading line so wrapped labels stay centred */
+@media (max-width: 680px) {
+  .section-head.center .eyebrow::before, .bridge-inner .eyebrow::before { display: none; }
+  .duo-card .link-arrow { justify-content: flex-start; }
+}
+@media (max-width: 960px) {
+  .split, .split-even, .founder, .feature { gap: var(--s3); }
+}
+
+/* Eyebrow dash stays on the first line when the label wraps */
+.eyebrow::before { flex: none; align-self: flex-start; margin-top: calc(.5lh - 1px); }
+
+/* Perspectives list: status badge drops below the title on phones */
+@media (max-width: 680px) {
+  .topic-list li { display: grid; grid-template-columns: 36px minmax(0, 1fr); gap: .75rem var(--s2); }
+  .topic-list .soon { grid-column: 2; grid-row: 1; justify-self: start; margin-left: 0; }
+  .topic-list li > div { grid-column: 2; }
 }
