@@ -1158,3 +1158,9 @@ ol.questions { list-style: none; padding: 0; margin: 0; }
   .profile-net { grid-column: 1 / -1; flex-direction: row; }
   .profile-net .net-media { width: 40%; aspect-ratio: auto; min-height: 320px; flex: none; }
 }
+
+/* Team cards: equal height, bios and links aligned along the bottom */
+@media (min-width: 961px) {
+  .profiles { align-items: stretch; }
+  .profile .bio { margin-top: auto; }
+}
